@@ -6,10 +6,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://127.0.0.1:5000";
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 class FinancialAppApi {
-    static async request(endpoint, data = {}, method = "get") {
+    static async request(endpoint, data = {}, method = "GET") {
         const url = `${BASE_URL}/${endpoint}`;
        
-        const params = (method === "get")
+        const params = (method === "GET")
             ? data
             : {};
 
@@ -18,7 +18,7 @@ class FinancialAppApi {
             return res.data;
 
         } catch (err) {
-            let message = err.response.data.error.message;
+            let message = err.res.data.err.message;
             throw Array.isArray(message) ? message : [message];
         }
     }
@@ -36,6 +36,11 @@ class FinancialAppApi {
     static async calculateMonthlyPayment({ loanLength, mortgageRate, loanAmount }) {
         let res = await this.request("calculateMonthlyPayment", { loanLength, mortgageRate, loanAmount }, "POST");
         return res.monthlyPayment;
+    }
+
+    static async getGeminiRecommendation({ maxLoan, downPayment, profession, desiredCity, allowableMilesFromCity }) {
+        let res = await this.request(`affordableCities/${maxLoan}/${downPayment}/${profession}/${desiredCity}/${allowableMilesFromCity}`);
+        return res;
     }
 }
 
