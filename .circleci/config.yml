@@ -1,15 +1,9 @@
 version: 2.1
 
-deployment:
-  production:
-    branch: main
-    commands:
-      - surge --project ./build --domain jordan-asano-financialapp.surge.sh
-
 executors:
   node-executor:
     docker:
-      - image: circleci/node:14.17.0  # Use an appropriate Node.js version
+      - image: circleci/node:14.17.0
     working_directory: ~/repo
 
 jobs:
@@ -45,7 +39,7 @@ jobs:
           root: .
           paths:
             - build
-commands:
+
   deploy:
     executor: node-executor
     steps:
