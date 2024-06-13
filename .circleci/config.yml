@@ -42,6 +42,9 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run:
+          name: Install Surge
+          command: npm install -g surge
+      - run:
           name: Deploy to Surge
           command: surge --project ./build --domain jordan-asano-financialapp.surge.sh
 
