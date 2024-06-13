@@ -2,7 +2,7 @@ import React from 'react';
 import './WrapperComponent.css';
 function WrapperComponent({ children }) {
     return (
-        <div className="container-fluid bg-secondary bg-opacity-50 wrapper-body">
+        <div className="container-fluid wrapper-body">
             {children}
         </div>
     );
