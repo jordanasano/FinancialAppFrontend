@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import GrossSalaryForm from "./GrossSalaryForm";
 import GeminiForm from "./GeminiForm";
 import MaxLoanForm from "./MaxLoanForm";

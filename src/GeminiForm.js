@@ -5,7 +5,6 @@ import LoadingSpinner from "./LoadingSpinner"
 function GeminiForm({ maxLoan, onGeminiHtmlStringChange }) {
     const [formData, setFormData] = useState(new FormData());
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState([]);
 
     function handleChange(evt) {
         const { name, value } = evt.target;
