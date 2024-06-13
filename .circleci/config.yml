@@ -45,6 +45,15 @@ jobs:
           root: .
           paths:
             - build
+commands:
+  deploy:
+    executor: node-executor
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Deploy to Surge
+          command: surge --project ./build --domain jordan-asano-financialapp.surge.sh
 
 workflows:
   version: 2
