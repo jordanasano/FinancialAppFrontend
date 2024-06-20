@@ -7,6 +7,7 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
     const [maxLoan, setMaxLoan] = useState(null);
     const [monthlyPayment, setMonthlyPayment] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [httpError, setHttpError] = useState(false);
     function handleChange(evt) {
         const { name, value } = evt.target;
         setFormData(st => ({
@@ -29,15 +30,21 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
         maxLoanData["maxDti"] = maxLoanData["maxDti"] / 100;
         setLoading(st => true);
         let loan = await FinancialAppApi.calculateMaxLoan(maxLoanData);
-        setLoading(st => false);
-        setMaxLoan(st => loan);
         let monthlyPaymentData = {
             "loanLength": maxLoanData["loanLength"],
             "mortgageRate": maxLoanData["mortgageRate"],
             "loanAmount": loan
         };
-        onMaxLoanChange(loan);
         let payment = await FinancialAppApi.calculateMonthlyPayment(monthlyPaymentData);
+        if (loan === null || payment === null) {
+            setHttpError(st => true);
+            setLoading(st => false);
+            return;
+        }
+        if (httpError) setHttpError(st => false);
+        setLoading(st => false);
+        setMaxLoan(st => loan);
+        onMaxLoanChange(loan);
         setMonthlyPayment(st => payment);
     }
     return (
@@ -73,14 +80,21 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
                     </div>
                 </div>
             </form>
-            <div class="col">
-                <div class="row">
-                    {maxLoan ? <p>You're maximum loan amount is ${maxLoan}</p> : null}
+            {!httpError ?
+                <div class="col">
+                    <div class="row">
+                        {maxLoan !== null ? <p>You're maximum loan amount is ${maxLoan}</p> : null}
+                    </div>
+                    <div class="row">
+                        {monthlyPayment !== null ? <p>You're monthly payment on that loan is ${monthlyPayment}</p> : null}
+                    </div>
                 </div>
-                <div class="row">
-                    {monthlyPayment ? <p>You're monthly payment on that loan is ${monthlyPayment}</p> : null}
+                :
+                <div class="col">
+                    <p>Error hit. Please double check the numbers you gave and try again!</p>
                 </div>
-            </div>
+
+            }
         </div>
     );
 }

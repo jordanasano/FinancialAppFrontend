@@ -24,23 +24,39 @@ class FinancialAppApi {
     }
 
     static async calculateMonthlyIncome(annualIncome) {
-        let res = await this.request("monthlyTakeHomeForCA", { annualIncome }, "POST");
-        return res;
+        try {
+            let res = await this.request("monthlyTakeHomeForCA", { annualIncome }, "POST");
+            return res;
+        } catch {
+            return null;
+        }
     }
 
     static async calculateMaxLoan({ mortgageRate, grossMonthlyIncome, loanLength, monthlyDebt, maxDti }) {
-        let res = await this.request("calculateMaxLoan", { mortgageRate, grossMonthlyIncome, loanLength, monthlyDebt, maxDti }, "POST");
-        return res.maxLoan;
+        try {
+            let res = await this.request("calculateMaxLoan", { mortgageRate, grossMonthlyIncome, loanLength, monthlyDebt, maxDti }, "POST");
+            return res.maxLoan;
+        } catch {
+            return null;
+        }
     }
 
     static async calculateMonthlyPayment({ loanLength, mortgageRate, loanAmount }) {
-        let res = await this.request("calculateMonthlyPayment", { loanLength, mortgageRate, loanAmount }, "POST");
-        return res.monthlyPayment;
+        try {
+            let res = await this.request("calculateMonthlyPayment", { loanLength, mortgageRate, loanAmount }, "POST");
+            return res.monthlyPayment;
+        } catch {
+            return null;
+        }
     }
 
     static async getGeminiRecommendation({ maxLoan, downPayment, profession, desiredCity, allowableMilesFromCity }) {
-        let res = await this.request(`affordableCities/${maxLoan}/${downPayment}/${profession}/${desiredCity}/${allowableMilesFromCity}`);
-        return res;
+        try {
+            let res = await this.request(`affordableCities/${maxLoan}/${downPayment}/${profession}/${desiredCity}/${allowableMilesFromCity}`);
+            return res;
+        } catch {
+            return null;
+        }
     }
 }
 

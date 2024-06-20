@@ -9,6 +9,7 @@ function App() {
     const [grossMonthlyIncome, setGrossMonthlyIncome] = useState(null);
     const [maxLoan, setMaxLoan] = useState(null);
     const [geminiHtmlString, setGeminiHtmlString] = useState(null);
+    const [httpError, setHttpError] = useState(false);
 
     function onGrossMonthlyIncomeChange(newGrossMonthlyIncome) {
         setGrossMonthlyIncome(st => newGrossMonthlyIncome);
@@ -18,6 +19,11 @@ function App() {
     }
     function onGeminiHtmlStringChange(newGeminiHtmlString) {
         setGeminiHtmlString(st => newGeminiHtmlString);
+        if (httpError) setHttpError(st => false);
+    }
+
+    function onHttpErrorChange(newHttpError) {
+        setHttpError(st => newHttpError);
     }
     return (
         <div class="container-fluid app-background">
@@ -27,14 +33,20 @@ function App() {
             <WrapperComponent>
                 <h1>Hi! Let's get started.</h1>
                 <GrossSalaryForm onGrossMonthlyIncomeChange={onGrossMonthlyIncomeChange} />
-                {grossMonthlyIncome ? <MaxLoanForm grossMonthlyIncome={grossMonthlyIncome} onMaxLoanChange={onMaxLoanChange} /> : null}
-                {maxLoan ? <GeminiForm maxLoan={maxLoan} onGeminiHtmlStringChange={onGeminiHtmlStringChange} /> : null}
-                {geminiHtmlString ?
+                {grossMonthlyIncome !== null ? <MaxLoanForm grossMonthlyIncome={grossMonthlyIncome} onMaxLoanChange={onMaxLoanChange} /> : null}
+                {maxLoan !== null ? <GeminiForm maxLoan={maxLoan} onGeminiHtmlStringChange={onGeminiHtmlStringChange} onHttpErrorChange={onHttpErrorChange} /> : null}
+                {geminiHtmlString !== null ?
                     <div>
                         <h2 class="text-center">What Gemini Thinks...</h2>
                         <div dangerouslySetInnerHTML={{ __html: geminiHtmlString }} />
                     </div>
                     : null}
+                {httpError ?
+                    <div>
+                        <h2 class="text-center">Gemini's hourly limit was reached. Please try again later!</h2>
+                    </div>
+                    : null
+                }
             </WrapperComponent>
         </div>
     );

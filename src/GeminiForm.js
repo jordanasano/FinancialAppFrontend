@@ -2,7 +2,7 @@ import { useState } from "react";
 import FinancialAppApi from "./api";
 import LoadingSpinner from "./LoadingSpinner"
 
-function GeminiForm({ maxLoan, onGeminiHtmlStringChange }) {
+function GeminiForm({ maxLoan, onGeminiHtmlStringChange, onHttpErrorChange }) {
     const [formData, setFormData] = useState(new FormData());
     const [loading, setLoading] = useState(false);
 
@@ -24,6 +24,7 @@ function GeminiForm({ maxLoan, onGeminiHtmlStringChange }) {
         setLoading(st => true);
         let geminiHtmlString = await FinancialAppApi.getGeminiRecommendation(geminiData);
         setLoading(st => false);
+        if (geminiHtmlString === null) onHttpErrorChange(st => true);
         onGeminiHtmlStringChange(geminiHtmlString);
     }
 
