@@ -3,13 +3,16 @@ import GeminiForm from "./GeminiForm";
 import MaxLoanForm from "./MaxLoanForm";
 import WrapperComponent from './WrapperComponent';
 import './App.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
     const [grossMonthlyIncome, setGrossMonthlyIncome] = useState(null);
     const [maxLoan, setMaxLoan] = useState(null);
     const [geminiHtmlString, setGeminiHtmlString] = useState(null);
     const [httpError, setHttpError] = useState(false);
+
+    // Set the title of the page
+    useEffect(() => { document.title = "Homebuyer's Tool" }, []);
 
     function onGrossMonthlyIncomeChange(newGrossMonthlyIncome) {
         setGrossMonthlyIncome(st => newGrossMonthlyIncome);
