@@ -3,7 +3,7 @@ import GeminiForm from "./GeminiForm";
 import MaxLoanForm from "./MaxLoanForm";
 import WrapperComponent from './WrapperComponent';
 import './App.css';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
     const [grossMonthlyIncome, setGrossMonthlyIncome] = useState(null);
