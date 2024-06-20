@@ -24,6 +24,8 @@ function GeminiForm({ maxLoan, onGeminiHtmlStringChange, onHttpErrorChange }) {
         setLoading(st => true);
         let geminiHtmlString = await FinancialAppApi.getGeminiRecommendation(geminiData);
         setLoading(st => false);
+
+        // If API hits an error, set the error in parent component
         if (geminiHtmlString === null) onHttpErrorChange(st => true);
         onGeminiHtmlStringChange(geminiHtmlString);
     }

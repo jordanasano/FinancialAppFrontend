@@ -14,20 +14,26 @@ function GrossSalaryForm({ onGrossMonthlyIncomeChange }) {
             [name]: value
         }));
     }
+
     async function handleSubmit(evt) {
         evt.preventDefault();
         setLoading(st => true);
         let monthlyTakeHomePay = await FinancialAppApi.calculateMonthlyIncome(formData["annualIncome"]);
+
+        // If API hits an error, set the error and prevent further processing
         if (!monthlyTakeHomePay) {
             setHttpError(st => true);
             setLoading(st => false);
             return;
         }
+
         if (httpError) setHttpError(st => false);
+
         setLoading(st => false);
         setNetMonthlyIncome(st => monthlyTakeHomePay.netMonthlyTakeHomePay);
         onGrossMonthlyIncomeChange(monthlyTakeHomePay.grossMonthlyTakeHomePay);
     }
+
     return (
         <div>
             <form onSubmit={handleSubmit} class="d-flex justify-content-center">
@@ -48,8 +54,7 @@ function GrossSalaryForm({ onGrossMonthlyIncomeChange }) {
             </form>
             {!httpError ?
                 netMonthlyIncome !== null ? <p>You're net monthly income is ${netMonthlyIncome}</p> : null
-                : <p>Error hit. Please double check your salary and try again!</p>
-            }
+                : <p>Error hit. Please double check your salary and try again!</p>}
         </div>
     );
 }

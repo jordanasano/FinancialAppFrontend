@@ -14,12 +14,14 @@ function App() {
     function onGrossMonthlyIncomeChange(newGrossMonthlyIncome) {
         setGrossMonthlyIncome(st => newGrossMonthlyIncome);
     }
+
     function onMaxLoanChange(newMaxLoan) {
         setMaxLoan(st => newMaxLoan);
     }
     function onGeminiHtmlStringChange(newGeminiHtmlString) {
         setGeminiHtmlString(st => newGeminiHtmlString);
-        if (httpError) setHttpError(st => false);
+        // If state of httpError is currently true and newGeminiHtmlString is not null, remove the error.
+        if (httpError && newGeminiHtmlString !== null) setHttpError(st => false);
     }
 
     function onHttpErrorChange(newHttpError) {
@@ -45,8 +47,7 @@ function App() {
                     <div>
                         <h2 class="text-center">Gemini's hourly limit was reached. Please try again later!</h2>
                     </div>
-                    : null
-                }
+                    : null}
             </WrapperComponent>
         </div>
     );

@@ -17,6 +17,7 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
     }
     async function handleSubmit(evt) {
         evt.preventDefault();
+
         // Gives error message if mortgageRate is not a valid float greater than 0
         if (!/^\d*\.?\d*$/.test(formData["mortgageRate"]) || parseFloat(formData["mortgageRate"]) <= 0) {
             alert("Mortgage rate must be number with a decimal that is greater than 0 (e.g., 3.14).");
@@ -24,10 +25,13 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
         }
 
         let maxLoanData = { ...formData, grossMonthlyIncome };
+        // Converting to float to be compatible with API
         for (let item in maxLoanData) {
             maxLoanData[item] = parseFloat(maxLoanData[item]);
         };
+        // API expects maxDti as decimal instead of percentage
         maxLoanData["maxDti"] = maxLoanData["maxDti"] / 100;
+
         setLoading(st => true);
         let loan = await FinancialAppApi.calculateMaxLoan(maxLoanData);
         let monthlyPaymentData = {
@@ -36,17 +40,22 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
             "loanAmount": loan
         };
         let payment = await FinancialAppApi.calculateMonthlyPayment(monthlyPaymentData);
+
+        // If either API hits an error, set the error and prevent further processing
         if (loan === null || payment === null) {
             setHttpError(st => true);
             setLoading(st => false);
             return;
         }
+
         if (httpError) setHttpError(st => false);
+
         setLoading(st => false);
         setMaxLoan(st => loan);
         onMaxLoanChange(loan);
         setMonthlyPayment(st => payment);
     }
+
     return (
         <div>
             <form onSubmit={handleSubmit} class="d-flex justify-content-center">
@@ -93,7 +102,6 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
                 <div class="col">
                     <p>Error hit. Please double check the numbers you gave and try again!</p>
                 </div>
-
             }
         </div>
     );
