@@ -11,9 +11,6 @@ function App() {
     const [geminiHtmlString, setGeminiHtmlString] = useState(null);
     const [httpError, setHttpError] = useState(false);
 
-    // Set the title of the page
-    useEffect(() => { document.title = "Homebuyer's Tool" }, []);
-
     function onGrossMonthlyIncomeChange(newGrossMonthlyIncome) {
         setGrossMonthlyIncome(st => newGrossMonthlyIncome);
     }
