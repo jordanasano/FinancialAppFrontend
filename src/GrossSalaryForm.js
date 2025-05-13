@@ -53,7 +53,7 @@ function GrossSalaryForm({ onGrossMonthlyIncomeChange }) {
                 </div>
             </form>
             {!httpError ?
-                netMonthlyIncome !== null ? <p>Youe net monthly income is ${netMonthlyIncome}</p> : null
+                netMonthlyIncome !== null ? <p>Your net monthly income is ${netMonthlyIncome}</p> : null
                 : <p>Error hit. Please double check your salary and try again!</p>}
         </div>
     );
