@@ -92,10 +92,10 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
             {!httpError ?
                 <div class="col">
                     <div class="row">
-                        {maxLoan !== null ? <p>You're maximum loan amount is ${maxLoan}</p> : null}
+                        {maxLoan !== null ? <p>Your maximum loan amount is ${maxLoan}</p> : null}
                     </div>
                     <div class="row">
-                        {monthlyPayment !== null ? <p>You're monthly payment on that loan is ${monthlyPayment}</p> : null}
+                        {monthlyPayment !== null ? <p>Your monthly payment on that loan is ${monthlyPayment}</p> : null}
                     </div>
                 </div>
                 :
