@@ -31,31 +31,31 @@ function GeminiForm({ maxLoan, onGeminiHtmlStringChange, onHttpErrorChange }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} class="d-flex justify-content-center">
-            <div class="col">
-                <div class="row">
+        <form onSubmit={handleSubmit} className="d-flex justify-content-center">
+            <div className="col">
+                <div className="row">
                     <title>Generate the top 5 cities to live in, powered by Gemini!</title>
                 </div>
-                <div class="row">
+                <div className="row">
                     <label htmlFor="profession">Your profession:</label>
                     <input id="profession" name="profession" onChange={handleChange} required></input>
                 </div>
-                <div class="row">
+                <div className="row">
                     <label htmlFor="downPayment">Down Payment:</label>
                     <input id="downPayment" name="downPayment" onChange={handleChange} type="number" min="0" required></input>
                 </div>
-                <div class="row">
+                <div className="row">
                     <label htmlFor="desiredCity">Most desired city:</label>
                     <input id="desiredCity" name="desiredCity" onChange={handleChange} required></input>
                 </div>
-                <div class="row">
+                <div className="row">
                     <label htmlFor="allowableMilesFromCity">Allowables miles from desired city:</label>
                     <input id="allowableMilesFromCity" name="allowableMilesFromCity" onChange={handleChange} type="number" min="0" required></input>
                 </div>
-                <div class="row">
+                <div className="row">
                     {loading ?
                         <LoadingSpinner />
-                        : <button class="btn btn-primary">Get Gemini Recommendations!</button>}
+                        : <button className="btn btn-primary">Get Gemini Recommendations!</button>}
                 </div>
             </div>
         </form>
