@@ -36,19 +36,19 @@ function GrossSalaryForm({ onGrossMonthlyIncomeChange }) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} class="d-flex justify-content-center">
-                <div class="col">
-                    <div class="row">
+            <form onSubmit={handleSubmit} className="d-flex justify-content-center">
+                <div className="col">
+                    <div className="row">
                         <title>Annual Income to Net Monthly Income For California</title>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <label htmlFor="annualIncome">Annual Income:</label>
                         <input id="annualIncome" name="annualIncome" onChange={handleChange} type="number" min="1" required></input>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         {loading ?
                             <LoadingSpinner />
-                            : <button class="btn btn-primary">Calculate Monthly Income!</button>}
+                            : <button className="btn btn-primary">Calculate Monthly Income!</button>}
                     </div>
                 </div>
             </form>
