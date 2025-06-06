@@ -28,10 +28,7 @@ function App() {
         setHttpError(st => newHttpError);
     }
     return (
-        <div class="container-fluid app-background">
-            <head>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-            </head>
+        <div className="container-fluid app-background">
             <WrapperComponent>
                 <h1>Hi! Let's get started.</h1>
                 <GrossSalaryForm onGrossMonthlyIncomeChange={onGrossMonthlyIncomeChange} />
@@ -39,13 +36,13 @@ function App() {
                 {maxLoan !== null ? <GeminiForm maxLoan={maxLoan} onGeminiHtmlStringChange={onGeminiHtmlStringChange} onHttpErrorChange={onHttpErrorChange} /> : null}
                 {geminiHtmlString !== null ?
                     <div>
-                        <h2 class="text-center">What Gemini Thinks...</h2>
+                        <h2 className="text-center">What Gemini Thinks...</h2>
                         <div dangerouslySetInnerHTML={{ __html: geminiHtmlString }} />
                     </div>
                     : null}
                 {httpError ?
                     <div>
-                        <h2 class="text-center">Gemini's hourly limit was reached. Please try again later!</h2>
+                        <h2 className="text-center">Gemini's hourly limit was reached. Please try again later!</h2>
                     </div>
                     : null}
             </WrapperComponent>
