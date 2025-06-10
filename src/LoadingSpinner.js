@@ -1,7 +1,7 @@
 function LoadingSpinner() {
     return (
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border text-primary" role="status" />
+        <div className="d-flex justify-content-center">
+            <div className="spinner-border text-primary" role="status" />
         </div>
     );
 }

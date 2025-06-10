@@ -58,48 +58,48 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} class="d-flex justify-content-center">
-                <div class="col">
-                    <div class="row">
+            <form onSubmit={handleSubmit} className="d-flex justify-content-center">
+                <div className="col">
+                    <div className="row">
                         <title>Maximum Loan Available</title>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <label htmlFor="loanLength">Loan Length:</label>
                         <select id="loanLength" name="loanLength" onChange={handleChange} required>
                             <option value="30"> 30</option>
                             <option value="15"> 15</option>
                         </select>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <label htmlFor="mortgageRate">Mortgage Rate:</label>
                         <input id="mortgageRate" name="mortgageRate" onChange={handleChange} required></input>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <label htmlFor="monthlyDebt">Total Monthly Debt:</label>
                         <input id="monthlyDebt" name="monthlyDebt" onChange={handleChange} type="number" min="0" required></input>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         <label htmlFor="maxDti">Max Debt to Income Ratio As Percentage:</label>
                         <input id="maxDti" name="maxDti" onChange={handleChange} type="number" min="0" required></input>
                     </div>
-                    <div class="row">
+                    <div className="row">
                         {loading ?
                             <LoadingSpinner />
-                            : <button class="btn btn-primary">Calculate Maximum Loan!</button>}
+                            : <button className="btn btn-primary">Calculate Maximum Loan!</button>}
                     </div>
                 </div>
             </form>
             {!httpError ?
-                <div class="col">
-                    <div class="row">
+                <div className="col">
+                    <div className="row">
                         {maxLoan !== null ? <p>Your maximum loan amount is ${maxLoan}</p> : null}
                     </div>
-                    <div class="row">
+                    <div className="row">
                         {monthlyPayment !== null ? <p>Your monthly payment on that loan is ${monthlyPayment}</p> : null}
                     </div>
                 </div>
                 :
-                <div class="col">
+                <div className="col">
                     <p>Error hit. Please double check the numbers you gave and try again!</p>
                 </div>
             }
