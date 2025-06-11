@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FinancialAppApi from "./api";
-import LoadingSpinner from "./LoadingSpinner"
+import LoadingSpinner from "./LoadingSpinner";
+import './WrapperComponent.css';
 
 function GeminiForm({ maxLoan, onGeminiHtmlStringChange, onHttpErrorChange }) {
     const [formData, setFormData] = useState(new FormData());
@@ -31,7 +32,7 @@ function GeminiForm({ maxLoan, onGeminiHtmlStringChange, onHttpErrorChange }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="d-flex justify-content-center">
+        <form onSubmit={handleSubmit} className="d-flex justify-content-center card">
             <div className="col">
                 <div className="row">
                     <title>Generate the top 5 cities to live in, powered by Gemini!</title>

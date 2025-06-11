@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FinancialAppApi from "./api";
 import LoadingSpinner from "./LoadingSpinner"
+import './WrapperComponent.css';
 
 function GrossSalaryForm({ onGrossMonthlyIncomeChange }) {
     const [formData, setFormData] = useState(new FormData());
@@ -35,7 +36,7 @@ function GrossSalaryForm({ onGrossMonthlyIncomeChange }) {
     }
 
     return (
-        <div>
+        <div className="card">
             <form onSubmit={handleSubmit} className="d-flex justify-content-center">
                 <div className="col">
                     <div className="row">
@@ -53,7 +54,7 @@ function GrossSalaryForm({ onGrossMonthlyIncomeChange }) {
                 </div>
             </form>
             {!httpError ?
-                netMonthlyIncome !== null ? <p>Your net monthly income is ${netMonthlyIncome}</p> : null
+                netMonthlyIncome !== null ? <p>Your net monthly income is ${netMonthlyIncome}.</p> : null
                 : <p>Error hit. Please double check your salary and try again!</p>}
         </div>
     );

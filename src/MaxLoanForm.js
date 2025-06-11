@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FinancialAppApi from "./api";
 import LoadingSpinner from "./LoadingSpinner"
+import './WrapperComponent.css';
 
 function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
     const [formData, setFormData] = useState({"loanLength": "30"});
@@ -57,7 +58,7 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
     }
 
     return (
-        <div>
+        <div className='card'>
             <form onSubmit={handleSubmit} className="d-flex justify-content-center">
                 <div className="col">
                     <div className="row">
@@ -92,10 +93,10 @@ function MaxLoanForm({ grossMonthlyIncome, onMaxLoanChange }) {
             {!httpError ?
                 <div className="col">
                     <div className="row">
-                        {maxLoan !== null ? <p>Your maximum loan amount is ${maxLoan}</p> : null}
+                        {maxLoan !== null ? <p>Your maximum loan amount is ${maxLoan}.</p> : null}
                     </div>
                     <div className="row">
-                        {monthlyPayment !== null ? <p>Your monthly payment on that loan is ${monthlyPayment}</p> : null}
+                        {monthlyPayment !== null ? <p>Your monthly payment on that loan is ${monthlyPayment}.</p> : null}
                     </div>
                 </div>
                 :

@@ -30,18 +30,21 @@ function App() {
     return (
         <div className="container-fluid app-background">
             <WrapperComponent>
-                <h1>Hi! Let's get started.</h1>
+                <header>
+                    <h1>Financial Insight Tool</h1>
+                    <p className="subtitle">Estimate your max mortgage and get Gemini's advice instantly</p>
+                </header>
                 <GrossSalaryForm onGrossMonthlyIncomeChange={onGrossMonthlyIncomeChange} />
                 {grossMonthlyIncome !== null ? <MaxLoanForm grossMonthlyIncome={grossMonthlyIncome} onMaxLoanChange={onMaxLoanChange} /> : null}
                 {maxLoan !== null ? <GeminiForm maxLoan={maxLoan} onGeminiHtmlStringChange={onGeminiHtmlStringChange} onHttpErrorChange={onHttpErrorChange} /> : null}
                 {geminiHtmlString !== null ?
-                    <div>
+                    <div className="card">
                         <h2 className="text-center">What Gemini Thinks...</h2>
                         <div dangerouslySetInnerHTML={{ __html: geminiHtmlString }} />
                     </div>
                     : null}
                 {httpError ?
-                    <div>
+                    <div className ="card">
                         <h2 className="text-center">Gemini's hourly limit was reached. Please try again later!</h2>
                     </div>
                     : null}

@@ -1,10 +1,56 @@
 .wrapper-body {
-    background-color: #CCFFFF;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
     min-height: 100vh;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
+    justify-content: flex-start;
+    font-size: 1rem;
+    color: #333;
+}
+
+.card {
+    width: 100%;
+    max-width: 700px;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    transition: box-shadow 0.2s ease;
+}
+
+button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
