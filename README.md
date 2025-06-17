@@ -47,10 +47,8 @@ A React + TypeScript single-page app for managing personal finance. This fronten
    ```bash
    npm test
 
-Folder Structure
-graphql
-Copy
-Edit
+### Folder Structure
+```graphql
 src/
 ├─ components/      # Reusable UI
 ├─ pages/           # Dashboard, Login, Signup, etc.
